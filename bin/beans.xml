@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"> <!-- bean definitions here -->
+
+	<context:component-scan base-package="com.example.jdbc"></context:component-scan>
+	<bean id="dataSourceObj"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"
+			value="com.mysql.jdbc.Driver"></property>
+		<property name="url"
+			value="jdbc:mysql://127.0.0.1:3306/school?useSSL=false"></property>
+		<property name="username" value="vinod"></property>
+		<property name="password" value="vinod123"></property>
+
+	</bean>
+
+	<bean id="jdbcTemplateObject"
+		class="org.springframework.jdbc.core.JdbcTemplate">
+		<constructor-arg name="dataSource" ref="dataSourceObj"></constructor-arg>
+	</bean>
+
+	<!--  <bean id="studentDao" class="com.example.jdbc.dao.StudentDaoImpl">
+		<property name="jdbcTemplate" ref="jdbcTemplateObject"></property>
+	</bean>  -->
+
+
+</beans>
